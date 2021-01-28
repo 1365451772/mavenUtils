@@ -2,6 +2,9 @@ package org.peng.utils;
 
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -33,7 +36,7 @@ public class ExcelUtil {
       sheet = book.getSheet(1);
       int columns = sheet.getColumns();
       int rows = sheet.getRows();
-      for (int i = 0; i < rows; i++) {
+      for (int i = 0; i < 18; i++) {
         //获取每一行的单元格
         cellId = sheet.getCell(1, i);//（列，行）
         purpose = sheet.getCell(2, i);
@@ -47,7 +50,15 @@ public class ExcelUtil {
             + "'" + level.getContents() + "'" + ", " + "'" + name.getContents() + "'" + ", "
             + "'" + purpose.getContents() + "'" + ", "
             + "'" + solution.getContents() + "'" + ")";
-        jdbcTemplate.execute(sql);
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        String url = "jdbc:mysql://localhost/test?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true";
+        String user = "root";
+        String psw = "root";
+        Connection connection = DriverManager.getConnection(url, user, psw);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.execute();
+        preparedStatement.close();
+        connection.close();
 
 //        JSONObject object = new JSONObject();
 //        object.put("姓名", name.getContents());
