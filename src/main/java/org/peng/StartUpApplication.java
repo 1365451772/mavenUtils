@@ -1,20 +1,18 @@
 package org.peng;
 
-import java.io.File;
-import org.peng.utils.ExcelUtil;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @Author sp
  * @Description
- * @create 2021-01-28 14:46
+ * @create 2021-01-28 14:43
  * @Modified By:
  */
+@SpringBootApplication
 public class StartUpApplication {
 
   public static void main(String[] args) {
-    File file = new File("C:\\Users\\bangcle\\Desktop\\1.xls");
-    ExcelUtil excelUtil = new ExcelUtil();
-    excelUtil.xlsToJsonArray(file);
+    SpringApplication.run(StartUpApplication.class,args);
   }
-
 }
