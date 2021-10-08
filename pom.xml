@@ -215,6 +215,12 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+        <!--etcd java客户端-->
+        <dependency>
+            <groupId>com.ibm.etcd</groupId>
+            <artifactId>etcd-java</artifactId>
+            <version>0.0.13</version>
+        </dependency>
     </dependencies>
 
     <build>

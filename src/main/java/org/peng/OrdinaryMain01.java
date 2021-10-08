@@ -1,9 +1,11 @@
 package org.peng;
 
-import com.alibaba.fastjson.JSON;
-import org.peng.Reponese.GoAppPushParam;
+import org.peng.Reponese.Test;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @Author sp
@@ -13,7 +15,7 @@ import java.io.IOException;
  */
 public class OrdinaryMain01 {
 
-  public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 //    String json = "{\n" +
 //            "  \"data\": [\n" +
 //            "    {\n" +
@@ -33,33 +35,61 @@ public class OrdinaryMain01 {
 //
 //    GoPushResponse goPushResponse = JSON.parseObject(json, GoPushResponse.class);
 //    System.out.println(goPushResponse);
+//
+//    String data = "{\n" +
+//            " \"action_id\": \"111111232323\",\n" +
+//            " \"app_ids\":[\n" +
+//            "  \"com.dream.novel.best.romance.read.app\",\n" +
+//            "  \"com.novel.werewolf\",\n" +
+//            "  \"com.xing.hotnovel\"\n" +
+//            " ],\n" +
+//            " \"message\": {\n" +
+//            " \"title\": \"global test\",\n" +
+//            "    \"body\": \"global body\",\n" +
+//            "    \"data\": {\n" +
+//            "   \"type\": \"1\",\n" +
+//            "   \"bookId\": \"510003275\"\n" +
+//            "  }\n" +
+//            "  }\n" +
+//            "}";
+//
+//    GoAppPushParam goAppPushParam = JSON.parseObject(data, GoAppPushParam.class);
+//
+//    System.out.println(goAppPushParam);
+//
+//
+//    String s = JSON.toJSONString(goAppPushParam);
+//    System.out.println(s);
+        String str = "AB";
+        String pattern = "A^A";
 
-    String data = "{\n" +
-            " \"action_id\": \"111111232323\",\n" +
-            " \"app_ids\":[\n" +
-            "  \"com.dream.novel.best.romance.read.app\",\n" +
-            "  \"com.novel.werewolf\",\n" +
-            "  \"com.xing.hotnovel\"\n" +
-            " ],\n" +
-            " \"message\": {\n" +
-            " \"title\": \"global test\",\n" +
-            "    \"body\": \"global body\",\n" +
-            "    \"data\": {\n" +
-            "   \"type\": \"1\",\n" +
-            "   \"bookId\": \"510003275\"\n" +
-            "  }\n" +
-            "  }\n" +
-            "}";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(str);
+        boolean b = m.find();
+        if (b) {
+            System.out.println(m.group());
+        }
+//        System.out.println(m.matches());
+        Test test = new Test();
+        test.setAge(1);
+        test.setName("test");
 
-    GoAppPushParam goAppPushParam = JSON.parseObject(data, GoAppPushParam.class);
+        Test test1 = new Test();
+        test1.setName("ss");
+        test1.setAge(2);
 
-    System.out.println(goAppPushParam);
+        HashMap<String, Test> stringTestHashMap = new HashMap<>();
+
+        stringTestHashMap.put("1", test);
+        stringTestHashMap.put("2", test1);
+
+        System.out.println(stringTestHashMap.get("1"));
+
+        test.setAge(2);
+        System.out.println(stringTestHashMap.get("1"));
 
 
-    String s = JSON.toJSONString(goAppPushParam);
-    System.out.println(s);
+    }
 
-
-  }
 
 }
